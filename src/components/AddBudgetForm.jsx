@@ -1,16 +1,30 @@
+// react imports
+import { useEffect, useRef } from "react";
+
 // rrd imports
-import { Form } from "react-router-dom"
+import { Form, useFetcher } from "react-router-dom"
 
 // library
 import { CurrencyRupeeIcon } from "@heroicons/react/24/solid"
 
 const AddBudgetForm = () => {
+  const fetcher = useFetcher();
+  const isSubmitting = fetcher.state === "submitting"
+
+  const formRef = useRef();
+
+  useEffect(() => {
+    if (!isSubmitting) {
+      formRef.current.reset()
+    }
+  }, [isSubmitting])
+
   return (
     <div className="form-wrapper">
       <h2 className="h3">
         Create Budget
       </h2>
-      <Form method="post" className="grid-sm">
+      <fetcher.Form method="post" className="grid-sm" ref={formRef}>
         <div className="grid-xs">
           <label htmlFor="newBudget"> Budget Name</label>
           <input
@@ -38,7 +52,7 @@ const AddBudgetForm = () => {
           <span>Create budget</span>
           <CurrencyRupeeIcon width={20}/>
         </button>
-      </Form>
+      </fetcher.Form>
     </div>
   )
 }
