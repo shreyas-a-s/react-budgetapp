@@ -12,10 +12,12 @@ const AddBudgetForm = () => {
   const isSubmitting = fetcher.state === "submitting"
 
   const formRef = useRef();
+  const focusRef = useRef();
 
   useEffect(() => {
     if (!isSubmitting) {
       formRef.current.reset()
+      focusRef.current.focus()
     }
   }, [isSubmitting])
 
@@ -33,6 +35,7 @@ const AddBudgetForm = () => {
             id="newBudget"
             placeholder="e.g.: Groceries"
             required
+            ref={focusRef}
           />
         </div>
         <div className="grid-xs">
