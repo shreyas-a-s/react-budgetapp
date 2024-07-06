@@ -12,7 +12,8 @@ import { toast } from "react-toastify";
 // loader
 export function dashboardLoader() {
   const userName = fetchData("userName");
-  return { userName }
+  const budgets = fetchData("budgets");
+  return { userName, budgets }
 }
 
 // actions
@@ -28,7 +29,7 @@ export async function dashboardAction({request}) {
 }
 
 const Dashboard = () => {
-const { userName } = useLoaderData()
+const { userName, budgets } = useLoaderData()
 
   return (
     <div>
