@@ -16,7 +16,7 @@ const Nav = ({ userName }) => {
       </NavLink>
       {
         userName && (
-          <Form method="post" action="/logout" onSubmit={(event) => {
+          <Form method="post" action="logout" onSubmit={(event) => {
             if (!confirm("Delete user and all data?")) {
               event.preventDefault()
             }

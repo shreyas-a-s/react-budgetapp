@@ -13,6 +13,16 @@ export async function logoutAction() {
     key: "userName"
   })
 
+  // delete the budgets
+  deleteItem({
+    key: "budgets"
+  })
+
+  // delete the expenses
+  deleteItem({
+    key: "expenses"
+  })
+
   //toast msg
   toast.success("Your account has been deleted!")
 
