@@ -91,7 +91,10 @@ const { userName, budgets, expenses } = useLoaderData()
                       expenses && expenses.length > 0 && (
                         <div className="grid-md">
                           <h2>Recent Expenses</h2>
-                          <Table expenses={expenses.sort((a, b) => b.createdAt - a.createdAt)} />
+                          <Table expenses={expenses
+                            .sort((a, b) => b.createdAt - a.createdAt)
+                            .slice(0, 8)}
+                          />
                         </div>
                       )
                     }
