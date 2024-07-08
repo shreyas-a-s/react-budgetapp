@@ -1,6 +1,7 @@
 // components
 import Intro from "../components/Intro";
 import AddBudgetForm from "../components/AddBudgetForm";
+import AddExpenseForm from "../components/AddExpenseForm";
 
 //helper functions
 import { useLoaderData } from "react-router-dom";
@@ -60,6 +61,7 @@ const { userName, budgets } = useLoaderData()
                   <div className="grid-lg">
                     <div className="flex-lg">
                       <AddBudgetForm />
+                      <AddExpenseForm budgets={budgets}/>
                     </div>
                   </div>
                 ) : (
