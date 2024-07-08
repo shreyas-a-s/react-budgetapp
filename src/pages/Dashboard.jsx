@@ -9,7 +9,7 @@ import Table from "../components/Table";
 import { Link, useLoaderData } from "react-router-dom";
 
 //helper functions
-import { createBudget, createExpense, fetchData, waait } from "../helpers"
+import { createBudget, createExpense, deleteItem, fetchData, waait } from "../helpers"
 
 // library
 import { toast } from "react-toastify";
@@ -60,6 +60,18 @@ export async function dashboardAction({request}) {
       return toast.success(`Expense ${values.newExpense} created! 👍`)
     } catch(e) {
       throw new Error("Creating expense was not successful.")
+    }
+  }
+
+  if (_action === "deleteExpense") {
+    try {
+      deleteItem({
+        key: "expenses",
+        id: values.expenseId,
+      });
+      return toast.success("Expense deleted!");
+    } catch (e) {
+      throw new Error("There was a problem deleting your expense.");
     }
   }
 }

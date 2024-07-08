@@ -1,10 +1,15 @@
 // rrd imports
-import { Link } from "react-router-dom";
+import { Link, useFetcher } from "react-router-dom";
+
+// library
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 // helper imports
 import { formatCurrency, formatDateToLocaleString, getAllMatchingItems } from "../helpers"
 
 const ExpenseItem = ({ expense }) => {
+  const fetcher = useFetcher();
+
   const budget = getAllMatchingItems({
     category: "budgets",
     key: "id",
@@ -25,6 +30,19 @@ const ExpenseItem = ({ expense }) => {
         >
           {budget.name}
         </Link>
+      </td>
+      <td>
+        <fetcher.Form method="post">
+          <input type="hidden" name="_action" value="deleteExpense" />
+          <input type="hidden" name="expenseId" value={expense.id} />
+          <button
+            type="submit"
+            className="btn btn--warning"
+            aria-label={`Delete ${expense.name} expense`}
+          >
+            <TrashIcon width={20} />
+          </button>
+        </fetcher.Form>
       </td>
     </>
   )
