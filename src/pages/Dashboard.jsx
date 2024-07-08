@@ -5,7 +5,7 @@ import AddExpenseForm from "../components/AddExpenseForm";
 
 //helper functions
 import { useLoaderData } from "react-router-dom";
-import { createBudget, fetchData, waait } from "../helpers"
+import { createBudget, createExpense, fetchData, waait } from "../helpers"
 
 // library
 import { toast } from "react-toastify";
@@ -47,6 +47,11 @@ export async function dashboardAction({request}) {
 
   if (_action === "addExpense") {
     try {
+      createExpense({
+        name: values.newExpense,
+        amount: values.newExpenseAmount,
+        budgetId: values.newExpenseBudget
+      })
       return toast.success(`Expense ${values.newExpense} created! 👍`)
     } catch(e) {
       throw new Error("Creating expense was not successful.")
