@@ -19,6 +19,9 @@ const ExpenseItem = ({ expense }) => {
       <td>
         <Link
         to={`/budget/${budget.id}`}
+          style={{
+            "--accent": budget.color,
+          }}
         >
           {budget.name}
         </Link>
